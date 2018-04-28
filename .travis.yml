@@ -1,2 +1,9 @@
 language: node_js
 node_js: node
+deploy:
+  provider: heroku
+  api_key:
+    secure: Eazrit+pS/rQ+0wZGsBqLG6xTf3jnnFANUgFGILvNvup1Ja/jHfPk25s9pgIpQ0TzEJ3U/NtIrH3Gb1cg6rjNYwp05icKEvqSUapzf/X8Z5L+7qGGVZ+ogF0z+D+/Qkq67oQYdMJBoLkxQ/toAHJF+cKQbqf5J5ve098bNWeFsqZGYeyGw/MAgAG969pY4e91p3bR19V7hWEL8sOw9hQAxkOo3DbbzbsVCG6/VG6c1in5gjsiWWNHO7l3ELyF20G4gYvxFUkHq0UdH8QFtpMWjt6cmEsu6VnW8DiktIy0uoXVAp8QnZ+aWS6Ea/78T5okAt1uw2T4Dai2+2CI5DghKq6PP9VEpoP7Y4jqhO348EF1iL8z4qaWmL27L1adeXO0e/f7NNCF6pazHPiFbriVLHDuWk9mVASQ6+fao4XGRok0yVEiThkMRiebj10fQw+ivmJ099dFlYodqvCPspALqAACjGmu9p3p/NgapeRMYj/gQZmYh/tdOlhHwaDDFrsdK2eK5witDkZaxdk/H+2wFxkmfhwP/V4xSPHMnlxlVr3wWlk07cvTgGaPGaMFYnynwlb5giRLZs8GimKzO8cF9CxtM7KZoDisbJEDWmabMMPnDjxjDGnDjKt0fr0Ex6KdZAJGu0vDsWmysjNA55GPSlsF3U8ZjpYuffoNcRGoro=
+  app: secret-basin-10279
+  on:
+    repo: arisimon/bird-app
