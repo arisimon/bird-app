@@ -8,6 +8,7 @@ const expect = chai.expect;
 
 chai.use(chaiHttp);
 
+//test to make sure index page exists, returns 200 status code
 describe('index page', function () {
   it('should exist', function () {
     return chai.request(app)
