@@ -18,3 +18,14 @@ describe('index page', function () {
       });
   });
 });
+
+//test to make sure species page exists, returns 200 status code
+describe('species page', function () {
+  it('should exist', function () {
+    return chai.request(app)
+      .get('/species')
+      .then(function (res) {
+        expect(res).to.have.status(200);
+      });
+  });
+});

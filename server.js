@@ -6,6 +6,7 @@ const path = require('path');
 const exphbs  = require('express-handlebars');
 const logger = require('morgan');
 const bodyParser = require('body-parser');
+const mongoose = require('mongoose');
 
 const app = express();
 
@@ -24,7 +25,7 @@ app.use(logger('common', {
 
 //require routers
 const indexRouter = require('./routes/index');
-const usersRouter = require('./routes/users');
+const speciesRouter = require('./routes/species');
 
 
 //set up view engine - express handlebars
@@ -33,49 +34,49 @@ app.set('view engine', 'handlebars');
 app.set('views', path.join(__dirname, 'views'));
 
 //serve static assets
-app.use(express.static('public'));
+// app.use(express.static('public'));
 
 
 //serve routers
 app.use('/', indexRouter);
-app.use('/users', usersRouter);
+app.use('/species', speciesRouter);
 
 
 let server;
 
-// //run server
-// function runServer(databaseUrl = DATABASE_URL, port = PORT) {
-// 	return new Promise((resolve, reject) => {
-// 		mongoose.connect(databaseUrl, err => {
-// 			if (err) {
-// 				return reject(err);
-// 			}
-// 			server = app.listen(port, () => {
-// 				console.log(`Your app is listening on port ${port}`);
-// 				resolve();
-// 			})
-// 				.on('error', err => {
-// 					mongoose.disconnect();
-// 					reject(err);
-// 				});
-// 		});
-// 	});
-// }
+//run server
+function runServer(databaseUrl = DATABASE_URL, port = PORT) {
+	return new Promise((resolve, reject) => {
+		mongoose.connect(databaseUrl, err => {
+			if (err) {
+				return reject(err);
+			}
+			server = app.listen(port, () => {
+				console.log(`Your server is running on ${port}`);
+				resolve();
+			})
+				.on('error', err => {
+					mongoose.disconnect();
+					reject(err);
+				});
+		});
+	});
+}
 
-// // close server, return promise
-// function closeServer() {
-// 	return mongoose.disconnect().then(() => {
-// 		return new Promise((resolve, reject) => {
-// 			console.log('Closing server');
-// 			server.close(err => {
-// 				if (err) {
-// 					return reject(err);
-// 				}
-// 				resolve();
-// 			});
-// 		});
-// 	});
-// };
+// close server, return promise
+function closeServer() {
+	return mongoose.disconnect().then(() => {
+		return new Promise((resolve, reject) => {
+			console.log('Closing server');
+			server.close(err => {
+				if (err) {
+					return reject(err);
+				}
+				resolve();
+			});
+		});
+	});
+};
 
 //if server is called directly
 if (require.main === module) {
