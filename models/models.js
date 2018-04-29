@@ -14,6 +14,8 @@ const observationSchema = mongoose.Schema({
 	location: {
 		lat: Number,
 		lng: Number,
-		address: String,
+		address: String
 	},
+	obsDate: {type: Date, default: Date.now},
 });
+

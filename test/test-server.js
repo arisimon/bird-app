@@ -29,3 +29,14 @@ describe('species page', function () {
       });
   });
 });
+
+//test to make sure specific bird page exists, returns 200 status code
+describe('specific bird page', function () {
+  it('should exist', function () {
+    return chai.request(app)
+      .get('/species/:id')
+      .then(function (res) {
+        expect(res).to.have.status(200);
+      });
+  });
+});

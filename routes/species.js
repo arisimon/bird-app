@@ -6,4 +6,9 @@ router.get('/', function(req, res, next) {
   res.send('respond with a resource');
 });
 
+router.get('/:id', function(req, res, next) {
+	res.send('this is a specific bird');
+});
+
+
 module.exports = router;
