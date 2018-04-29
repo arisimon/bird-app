@@ -8,6 +8,9 @@ const logger = require('morgan');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 
+mongoose.Promise = global.Promise;
+
+//create the express application
 const app = express();
 
 //set bodyParser
@@ -34,12 +37,15 @@ app.set('view engine', 'handlebars');
 app.set('views', path.join(__dirname, 'views'));
 
 //serve static assets
-// app.use(express.static('public'));
+app.use(express.static('public'));
 
 
 //serve routers
 app.use('/', indexRouter);
 app.use('/species', speciesRouter);
+
+//
+const {PORT, DATABASE_URL} = require('./configs');
 
 
 let server;
