@@ -23,7 +23,7 @@ describe('index page', function () {
 describe('species page', function () {
   it('should exist', function () {
     return chai.request(app)
-      .get('/species')
+      .get('/api/species')
       .then(function (res) {
         expect(res).to.have.status(200);
       });
@@ -34,7 +34,7 @@ describe('species page', function () {
 describe('specific bird page', function () {
   it('should exist', function () {
     return chai.request(app)
-      .get('/species/:id')
+      .get('/api/species/:id')
       .then(function (res) {
         expect(res).to.have.status(200);
       });
