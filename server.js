@@ -49,7 +49,7 @@ app.use(express.static('public'));
 
 //serve routers
 app.use('/', indexRouter);
-app.use('/species', speciesRouter);
+app.use('/api/species', speciesRouter);
 
 //
 const {PORT, DATABASE_URL} = require('./configs');
