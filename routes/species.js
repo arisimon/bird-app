@@ -10,7 +10,7 @@ const config = require('../configs');
 router.get('/', function(req, res, next) {
 	console.log('Received a GET request for all species');
 	Species
-	.find()
+	.find({})
 	.limit(20)
 	.then(species => {
       res.json({
