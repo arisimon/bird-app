@@ -7,15 +7,19 @@ const exphbs  = require('express-handlebars');
 const logger = require('morgan');
 const bodyParser = require('body-parser');
 
-// //Import the mongoose module
-// const mongoose = require('mongoose');
-// //Set up default mongoose connection
-// const mongoDB = 'mongodb://localhost:8080/bird-app';
-// mongoose.connect(mongoDB);
-// mongoose.Promise = global.Promise;
-// const db = mongoose.connection;
-// //Bind connection to error event (to get notification of connection errors)
-// db.on('error', console.error.bind(console, 'MongoDB connection error:'));
+//import configuration files
+const {PORT, DATABASE_URL} = require('./configs');
+const { Observation } = require('./models');
+
+//Import the mongoose module
+const mongoose = require('mongoose');
+//Set up default mongoose connection
+const mongoDB = 'mongodb://ari:ari@ds113640.mlab.com:13640/birds';
+mongoose.connect(mongoDB);
+mongoose.Promise = global.Promise;
+const db = mongoose.connection;
+//Bind connection to error event (to get notification of connection errors)
+db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 
 //create the express application
 const app = express();
@@ -36,6 +40,7 @@ app.use(logger('common', {
 //require routers
 const indexRouter = require('./routes/index');
 const speciesRouter = require('./routes/species');
+const observationRouter = require('./routes/observations');
 
 
 //set up view engine - express handlebars
@@ -50,9 +55,8 @@ app.use(express.static('public'));
 //serve routers
 app.use('/', indexRouter);
 app.use('/api/species', speciesRouter);
+app.use('/api/observations', observationRouter);
 
-//
-const {PORT, DATABASE_URL} = require('./configs');
 
 
 let server;
