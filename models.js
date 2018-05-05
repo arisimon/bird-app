@@ -65,6 +65,18 @@ speciesSchema.methods.serialize = function() {
 	};
 }
 
-const {Species} = mongoose.model('Species', speciesSchema, 'birds');
+const Species = mongoose.model('Species', speciesSchema, 'birds');
 
 module.exports = {Species};
+
+
+
+
+
+
+
+
+
+
+
+
