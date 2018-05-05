@@ -55,7 +55,7 @@ app.use(express.static('public'));
 //serve routers
 app.use('/', indexRouter);
 app.use('/api/species', speciesRouter);
-app.use('/api/observations', observationRouter);
+app.use('/observations', observationRouter);
 
 
 

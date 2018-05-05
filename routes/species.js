@@ -11,7 +11,7 @@ router.get('/', function(req, res, next) {
     console.log('Received a GET request for all species');
     Species
         .find()
-        .limit(20)
+        .limit(50)
         .then(species => {
             res.json(species);
             console.log(species);
@@ -22,16 +22,18 @@ router.get('/', function(req, res, next) {
         });
 });
 
-// //get species by ID
-// router.get('/:id', function(req, res, next) {
-//     Species
-//         .find()
-//         .then(species => res.json(species.serialize()))
-//         .catch(err => {
-//             console.error(err);
-//             res.status(500).json({ message: 'Internal server error' })
-//         });
-// });
+//get species by common name
+router.get('/:id', function(req, res, next) {
+    Species
+        .find({
+        	common_name
+        })
+        .then(species => res.json(species.serialize()))
+        .catch(err => {
+            console.error(err);
+            res.status(500).json({ message: 'Internal server error' })
+        });
+});
 
 
 

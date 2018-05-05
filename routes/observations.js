@@ -18,16 +18,16 @@ router.get('/', function(req, res, next) {
         });
 });
 
-//get specific observation by ID
-router.get('/:id', function(req, res, next) {
-            Observation
-                .findById(req.params.id)
-                .then(observation => res.json(observation.serialize()))
-                .catch(err => {
-                    console.error(err);
-                    res.status(500).json({ message: 'Internal server error' })
-                });
-            });
+// //get specific observation by ID
+// router.get('/:id', function(req, res, next) {
+//             Observation
+//                 .findById(req.params.id)
+//                 .then(observation => res.json(observation.serialize()))
+//                 .catch(err => {
+//                     console.error(err);
+//                     res.status(500).json({ message: 'Internal server error' })
+//                 });
+//             });
 
 
 //create a new observation

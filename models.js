@@ -4,6 +4,29 @@ const mongoose = require('mongoose');
 mongoose.Promise = global.Promise;
 
 
+
+//schema to find species
+const speciesSchema = mongoose.Schema({
+	scientific_name: String,
+	common_name: String,
+	family: String,
+})
+
+speciesSchema.methods.serialize = function() {
+	return {
+		id: this._id,
+		scientific_name: this.scientific_name,
+		common_name: this.common_name,
+		family: this.family,
+	};
+}
+
+const Species = mongoose.model('Species', speciesSchema, 'birds');
+
+module.exports = {Species};
+
+
+
 //observation schema
 const observationSchema = mongoose.Schema({
 	user: String,
@@ -49,25 +72,7 @@ const Observation = mongoose.model('Observation', observationSchema, 'birds');
 module.exports = {Observation};
 
 
-//schema to find species
-const speciesSchema = mongoose.Schema({
-	scientific_name: String,
-	common_name: String,
-	family: String,
-})
 
-speciesSchema.methods.serialize = function() {
-	return {
-		id: this._id,
-		scientific_name: this.scientific_name,
-		common_name: this.common_name,
-		family: this.family,
-	};
-}
-
-const Species = mongoose.model('Species', speciesSchema, 'birds');
-
-module.exports = {Species};
 
 
 

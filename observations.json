@@ -1,0 +1,27 @@
+{
+	{ 
+		"bird": {
+			"scientific_name":"Struthio camelus",
+			"common_name": "Common Ostrich",
+			"family": "Struthionidae (Ostriches)",
+			}
+	},
+	{
+	"location": {
+			"lat": 34.1490401,
+			"lng": -118.28404849999998,
+			"address": "5333 Zoo Dr, Los Angeles, CA 90027",
+			} 
+	},
+	{
+		"notes": {
+			"details": "I was at the LA Zoo and saw an ostrich",
+	},
+	{
+		"photos": {
+			"filename": "ostrich.jpg" ,
+			"url": "./public/images/ostrich.jpg",
+		}
+
+	},
+}
