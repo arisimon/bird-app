@@ -1,27 +1,59 @@
-{
-	{ 
-		"bird": {
-			"scientific_name":"Struthio camelus",
-			"common_name": "Common Ostrich",
-			"family": "Struthionidae (Ostriches)",
-			}
-	},
-	{
-	"location": {
-			"lat": 34.1490401,
-			"lng": -118.28404849999998,
-			"address": "5333 Zoo Dr, Los Angeles, CA 90027",
-			} 
-	},
-	{
-		"notes": {
-			"details": "I was at the LA Zoo and saw an ostrich",
-	},
-	{
-		"photos": {
-			"filename": "ostrich.jpg" ,
-			"url": "./public/images/ostrich.jpg",
-		}
-
-	},
-}
+[
+  {
+    "bird": {
+      "scientific_name": "Struthio camelus",
+      "common_name": "Common Ostrich",
+      "family": "Struthionidae (Ostriches)"
+    },
+    "location": {
+      "lat": 34.1490401,
+      "lng": -118.28404849999998,
+      "address": "5333 Zoo Dr, Los Angeles, CA 90027"
+    },
+    "notes": {
+      "details": "I was at the LA Zoo and saw an ostrich"
+    },
+    "photos": {
+      "filename": "ostrich.jpg",
+      "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bd/Struthio_camelus_portrait_Whipsnade_Zoo.jpg/220px-Struthio_camelus_portrait_Whipsnade_Zoo.jpg"
+    }
+  },
+  {
+    "bird": {
+      "scientific_name": "Penelope purpurascens",
+      "common_name": "Crested Guan",
+      "family": "Cracidae (Guans, Chachalacas, Curassows)"
+    },
+    "location": {
+      "lat": 34.1490401,
+      "lng": -118.28404849999998,
+      "address": "5333 Zoo Dr, Los Angeles, CA 90027"
+    },
+    "notes": {
+      "details": "I was at the LA Zoo and saw a Guan"
+    },
+    "photos": {
+      "filename": "crested-guan.jpg",
+      "url": "https://www.birdforum.net/opus/images/thumb/8/87/Crested_Guan.jpg/550px-Crested_Guan.jpg"
+    }
+  },
+  {
+    "bird": {
+      "scientific_name": "Metallura baroni",
+      "common_name": "Violet-throated Metaltail",
+      "family": "Trochilidae (Hummingbirds)"
+    },
+    "location": {
+      "lat": 34.1490401,
+      "lng": -118.28404849999998,
+      "address": "5333 Zoo Dr, Los Angeles, CA 90027"
+    },
+    "notes": {
+      "details": "I was at the LA Zoo and saw a Violet-throated Metaltail"
+    },
+    "photos": {
+      "filename": "metaltail.jpg",
+      "url": "https://download.ams.birds.cornell.edu/api/v1/asset/50511231"
+    }
+  }
+]

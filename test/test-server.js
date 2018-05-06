@@ -40,3 +40,14 @@ describe('specific bird page', function () {
       });
   });
 });
+
+//test to make sure observation pages exists, returns 200 status code
+describe('observations page', function () {
+  it('should exist', function () {
+    return chai.request(app)
+      .get('/observations')
+      .then(function (res) {
+        expect(res).to.have.status(200);
+      });
+  });
+});

@@ -1,1 +1,16 @@
 API key ebird = c57cssobo0im
+
+//figure out fields for POST requests
+function defineFields(req) {
+	const fields = ['scientific_name', 'common_name', 'family', 'lat', 'lng', 'address', 'details', 'obsDate'];
+	const birdFields = ['scientific_name', 'common_name', 'family'];
+	const notesFields = ['details'];
+	const locationFields = ['lat', 'lng', 'address'];
+	const observation = { 'bird': {}, 'location': {}, 'notes': {}, /*'userId': req.body.userId*/ };
+	for (let field of fields) if (req.body[field]) {
+		if (birdFields.includes(field)) observation.bird[field] = req.body[field];
+		if (locationFields.includes(field)) observation.location[field] = req.body[field];
+		if (notesFields.includes(field)) observation.notes[field] = req.body[field];
+	};
+	return observation;
+}

@@ -5,7 +5,7 @@ mongoose.Promise = global.Promise;
 
 
 
-//schema to find species
+//species schema
 const speciesSchema = mongoose.Schema({
 	scientific_name: String,
 	common_name: String,
@@ -23,25 +23,23 @@ speciesSchema.methods.serialize = function() {
 
 const Species = mongoose.model('Species', speciesSchema, 'birds');
 
-module.exports = {Species};
-
 
 
 //observation schema
 const observationSchema = mongoose.Schema({
-	user: String,
+	// userId: {type: String, required: true},
 	bird: {
 		scientific_name: String,
-		common_name: String,
+		common_name: {type: String, required: true},
 		family: String,
 	},
 	location: {
 		lat: Number,
 		lng: Number,
-		address: String,
+		address: {type: String, required: true},
 	},
 	notes: {
-		details: String,
+		details: {type: String, required: true},
 	},
 	photos: {
 		files: [
@@ -52,14 +50,15 @@ const observationSchema = mongoose.Schema({
 			}
 		]
 	},
-	obsDate: {type: Date, default: Date.now},
+	obsDate: {type: Date, default: Date.now, required: true},
 });
 
 observationSchema.methods.serialize = function() {
 	const obsDateObj = new Date(this.obsDate);
 	return {
 		id: this._id,
-		userId: this.userId,
+		// userId: this.userId,
+		bird: this.bird,
 		location: this.location,
 		notes: this.notes,
 		photos: this.photos,
@@ -67,9 +66,9 @@ observationSchema.methods.serialize = function() {
 	};
 }
 
-const Observation = mongoose.model('Observation', observationSchema, 'birds');
+const Observation = mongoose.model('Observation', observationSchema, 'observations');
 
-module.exports = {Observation};
+module.exports = {Species, Observation};
 
 
 

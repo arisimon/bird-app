@@ -8,7 +8,7 @@ const logger = require('morgan');
 const bodyParser = require('body-parser');
 
 //import configuration files
-const {PORT, DATABASE_URL} = require('./configs');
+const {PORT, DATABASE_URL } = require('./configs');
 const { Observation } = require('./models');
 
 //Import the mongoose module
@@ -37,6 +37,7 @@ app.use(logger('common', {
   stream: fs.createWriteStream(path.join(__dirname, 'access.log'), {flags: 'a'})
 }))
 
+
 //require routers
 const indexRouter = require('./routes/index');
 const speciesRouter = require('./routes/species');
@@ -56,6 +57,9 @@ app.use(express.static('public'));
 app.use('/', indexRouter);
 app.use('/api/species', speciesRouter);
 app.use('/observations', observationRouter);
+app.use('*', function (req, res) {
+	res.status(404).json({ message: 'Not Found' });
+});
 
 
 
@@ -97,9 +101,7 @@ function closeServer() {
 
 //if server is called directly
 if (require.main === module) {
-  app.listen(process.env.PORT || 8080, function () {
-    console.info(`Server started on ${this.address().port}`);
-  });
+  runServer(DATABASE_URL).catch(err => console.error(err));
 }
 
 module.exports = app; 
