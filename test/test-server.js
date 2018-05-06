@@ -51,3 +51,5 @@ describe('observations page', function () {
       });
   });
 });
+
+//test to check PUT request 

@@ -27,6 +27,13 @@ const app = express();
 //set bodyParser
 app.use(bodyParser.json());
 
+//enable CORS
+app.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  next();
+});
+
 // set morgan to log only 4xx and 5xx responses to console
 app.use(logger('dev', {
   skip: function (req, res) { return res.statusCode < 400 }
@@ -60,7 +67,6 @@ app.use('/observations', observationRouter);
 app.use('*', function (req, res) {
 	res.status(404).json({ message: 'Not Found' });
 });
-
 
 
 let server;

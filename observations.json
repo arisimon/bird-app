@@ -15,7 +15,8 @@
     },
     "photos": {
       "filename": "ostrich.jpg",
-      "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bd/Struthio_camelus_portrait_Whipsnade_Zoo.jpg/220px-Struthio_camelus_portrait_Whipsnade_Zoo.jpg"
+      "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bd/Struthio_camelus_portrait_Whipsnade_Zoo.jpg/220px-Struthio_camelus_portrait_Whipsnade_Zoo.jpg",
+      "thumbnail": "thumnail"
     }
   },
   {
@@ -34,7 +35,8 @@
     },
     "photos": {
       "filename": "crested-guan.jpg",
-      "url": "https://www.birdforum.net/opus/images/thumb/8/87/Crested_Guan.jpg/550px-Crested_Guan.jpg"
+      "url": "https://www.birdforum.net/opus/images/thumb/8/87/Crested_Guan.jpg/550px-Crested_Guan.jpg",
+      "thumbnail": "thumnail"
     }
   },
   {
@@ -53,7 +55,8 @@
     },
     "photos": {
       "filename": "metaltail.jpg",
-      "url": "https://download.ams.birds.cornell.edu/api/v1/asset/50511231"
+      "url": "https://download.ams.birds.cornell.edu/api/v1/asset/50511231",
+      "thumbnail": "thumnail"
     }
   }
 ]
