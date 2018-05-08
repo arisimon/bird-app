@@ -2,8 +2,7 @@
 
 const mongoose = require('mongoose');
 mongoose.Promise = global.Promise;
-mongoose.set('debug', true);
-
+const uniqueValidator = require('mongoose-unique-validator');
 
 
 
@@ -69,6 +68,7 @@ const observationSchema = mongoose.Schema({
             };
         }
 
+        observationSchema.plugin(uniqueValidator);
         const Observation = mongoose.model('Observation', observationSchema, 'observations');
 
         module.exports = { Species, Observation };

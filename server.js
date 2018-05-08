@@ -9,7 +9,12 @@ const bodyParser = require('body-parser');
 
 //import configuration files
 const {PORT, DATABASE_URL } = require('./configs');
-const { Observation } = require('./models');
+const { Observation, Species } = require('./models');
+
+//require routers
+const indexRouter = require('./routes/index');
+const speciesRouter = require('./routes/species');
+const observationRouter = require('./routes/observations');
 
 //Import the mongoose module
 const mongoose = require('mongoose');
@@ -29,10 +34,15 @@ app.use(bodyParser.json());
 
 //enable CORS
 app.use(function(req, res, next) {
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-  next();
+	res.header('Access-Control-Allow-Origin', '*');
+	res.header('Access-Control-Allow-Headers', 'Content-Type,Authorization');
+	res.header('Access-Control-Allow-Methods', 'GET,POST,PUT,PATCH,DELETE');
+	if (req.method === 'OPTIONS') {
+		return res.send(204);
+	}
+	next();
 });
+
 
 // set morgan to log only 4xx and 5xx responses to console
 app.use(logger('dev', {
@@ -43,12 +53,6 @@ app.use(logger('dev', {
 app.use(logger('common', {
   stream: fs.createWriteStream(path.join(__dirname, 'access.log'), {flags: 'a'})
 }))
-
-
-//require routers
-const indexRouter = require('./routes/index');
-const speciesRouter = require('./routes/species');
-const observationRouter = require('./routes/observations');
 
 
 //set up view engine - express handlebars
@@ -67,6 +71,7 @@ app.use('/observations', observationRouter);
 app.use('*', function (req, res) {
 	res.status(404).json({ message: 'Not Found' });
 });
+
 
 
 let server;
@@ -110,4 +115,4 @@ if (require.main === module) {
   runServer(DATABASE_URL).catch(err => console.error(err));
 }
 
-module.exports = app; 
+module.exports = { app, runServer, closeServer }; 
