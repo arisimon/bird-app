@@ -28,7 +28,6 @@ const Species = mongoose.model('Species', speciesSchema, 'birds');
 
 //observation schema
 const observationSchema = mongoose.Schema({
-            userId: {type: String, required: true},
             bird: {
             	scientific_name: String,
             	common_name: {type: String, required: true},
@@ -59,7 +58,6 @@ const observationSchema = mongoose.Schema({
             const obsDateObj = new Date(this.obsDate);
             return {
                 id: this._id,
-                userId: this.userId,
                 bird: this.bird,
                 location: this.location,
                 notes: this.notes,

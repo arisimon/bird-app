@@ -12,6 +12,7 @@ router.get('/', function(req, res, next) {
     console.log('Received a GET request for all species');
     Species
         .find()
+        .limit(50)
         .then(species => {
             res.json(species);
         })

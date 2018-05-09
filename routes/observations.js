@@ -36,7 +36,7 @@ router.get('/:id', function(req, res, next) {
 //handle POST request, create a new observation
 router.post('/', jsonParser, function(req, res, next) {
     console.log('POSTing a new observation');
-    const requiredFields = ['userId', 'bird', 'notes', 'location', 'obsDate'];
+    const requiredFields = ['bird', 'notes', 'location', 'obsDate'];
     for (let i = 0; i < requiredFields.length; i++) {
         const field = requiredFields[i];
         if (!(field in req.body)) {
@@ -47,7 +47,6 @@ router.post('/', jsonParser, function(req, res, next) {
     }
     Observation
         .create({
-            userId: req.body.userId,
             bird: req.body.bird,
             location: req.body.location,
             notes: req.body.notes,
@@ -74,10 +73,10 @@ router.delete('/:id', (req, res) => {
 });
 
 
-//PUT request to update observation
+//PUT request to update observation notes
 router.put('/:id', jsonParser, (req, res) => {
 	console.log(req.body);
-	const requiredFields = ['userId', 'bird', 'notes', 'location', 'obsDate'];
+	const requiredFields = ['notes'];
 	    for (let i = 0; i < requiredFields.length; i++) {
         const field = requiredFields[i];
         if (!(field in req.body)) {
