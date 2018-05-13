@@ -52,7 +52,7 @@ function tearDownDb() {
 }
 
 
-describe('API endpoint tests=', function() {
+describe('API endpoint tests', function() {
     before(function() {
         return runServer(TEST_DATABASE_URL);
     });
