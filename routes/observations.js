@@ -34,7 +34,7 @@ router.get('/:id', function(req, res, next) {
 
 
 //handle POST request, create a new observation
-router.post('/', jsonParser, function(req, res, next) {
+router.post('/new', jsonParser, function(req, res, next) {
     console.log('POSTing a new observation');
     const requiredFields = ['bird', 'notes', 'location', 'obsDate'];
     for (let i = 0; i < requiredFields.length; i++) {
@@ -54,6 +54,7 @@ router.post('/', jsonParser, function(req, res, next) {
         })
         .then(
             observation => res.status(201).json(observation.serialize()))
+            res.redirect('/observations')
         .catch(err => {
             console.error(err);
             res.status(500).json({ message: 'Internal server error' });
