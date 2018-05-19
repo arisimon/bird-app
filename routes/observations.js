@@ -19,6 +19,7 @@ router.get('/', function(req, res, next) {
             console.error(err);
             res.status(500).json({ error: 'Internal Server Error' });
         });
+        res.render('observations');
 });
 
 //get specific observation by ID
@@ -32,9 +33,13 @@ router.get('/:id', function(req, res, next) {
         });
 });
 
+router.get('/new', function(req, res, next) {
+   res.render('new'); 
+});
+
 
 //handle POST request, create a new observation
-router.post('/new', jsonParser, function(req, res, next) {
+router.post('/', jsonParser, function(req, res, next) {
     console.log('POSTing a new observation');
     const requiredFields = ['bird', 'notes', 'location', 'obsDate'];
     for (let i = 0; i < requiredFields.length; i++) {
