@@ -19,6 +19,7 @@ function showObservations(data) {
   for (let index in data) {
     const showObservation = $(`<p> ${data.bird.scientific_name} </p>`);
   $('.observations-container').append(showObservation);
+  console.log(data.bird);
   }
 }
 

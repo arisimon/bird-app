@@ -1,23 +1,25 @@
-<form>
-  <div class="row">
-    <div class="six columns">
-      <label for="exampleEmailInput">Your email</label>
-      <input class="u-full-width" type="email" placeholder="test@mailbox.com" id="exampleEmailInput">
+<div class='container u-full-width'>
+<form action='/observations' method='post'>
+  <div class='row'>
+    <div class='six columns'>
+      <h2>Species</h2>
+      <label for='scientificName'>Scientific Name</label>
+      <input class='u-full-width' type='text' placeholder='Struthio camelus' id='scientificName'>
+      <label for='commonName'>Common Name</label>
+      <input class='u-full-width' type='text' placeholder='Common Ostrich' id='commonName'>
+      <label for='familyName'>Family Name</label>
+      <input class='u-full-width' type='text' placeholder='Struthionidae (Ostriches)' id='familyName'>
     </div>
-    <div class="six columns">
-      <label for="exampleRecipientInput">Reason for contacting</label>
-      <select class="u-full-width" id="exampleRecipientInput">
-        <option value="Option 1">Questions</option>
-        <option value="Option 2">Admiration</option>
-        <option value="Option 3">Can I get your number?</option>
-      </select>
+    <div class='six columns'>
+      <h2>Location</h2>
+      <label for='autocomplete'>Address</label>
+      <input class='u-full-width' id="autocomplete" placeholder="Enter your address" type="text"></input>
+      <h2>Photos</h2>
+      <input class='u-full-width' type='file' id='photoUpload' accept='.png, .jpg, .jpeg .pdf' multiple>
     </div>
   </div>
-  <label for="exampleMessage">Message</label>
-  <textarea class="u-full-width" placeholder="Hi Dave …" id="exampleMessage"></textarea>
-  <label class="example-send-yourself-copy">
-    <input type="checkbox">
-    <span class="label-body">Send a copy to yourself</span>
-  </label>
+  <label for="detail">Observation Notes</label>
+  <textarea class="u-full-width" placeholder="Observation Notes" id="detail"></textarea>
   <input class="button-primary" type="submit" value="Submit">
 </form>
+</div> 

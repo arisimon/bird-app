@@ -1,15 +1,26 @@
 <div class='container u-full-width' id='nav-bar'>
-	<a href="home">Home</a>
-	<a href='/observations/new'>New Observation</a>
-	<a href='/species'>Species Search</a>
+    <a href="home">Home</a>
+    <a href='/observations/new'>New Observation</a>
+    <!-- <a href='/api/species'>Species Search</a> -->
 </div>
-<div class="container">
-    <div class="row">
-      <div class='three columns'>Test</div>
-      <div class='three columns'>Test</div>
-      <div class='three columns'>Test</div>
-      <div class='three columns'>Test</div>
+{{#each contents}}
+<div class="container observation-card">
+        <div class='u-full-width '>
+          <div>
+           <h3>{{this.bird.common_name}}</h3>
+           <ul>
+             <li>{{this.bird.scientific_name}}</li>
+             <li>{{this.bird.family}}</li>
+             <li>{{this.location.address}}</li>
+             <li>{{this.notes.details}}</li>
+           </ul>
+         </div>
+         <div class='u-pull-right'>
+           <img src='{{this.photos.files.url}}'>
+        <button class='button'>Delete</button>
+        <button class='button'>Update</button>
       </div>
-    </div>
-  </div>
-  
+        </div>
+
+</div>
+{{/each}}

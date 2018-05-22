@@ -10,16 +10,21 @@ const jsonParser = bodyParser.json();
 router.get('/', function(req, res, next) {
     console.log('Received a get request for all observations');
     Observation
-        .find()
-        .limit(20)
-        .then(observation => {
-            res.json(observation.map(observation => observation.serialize()));
+        .find(function(err, content) {
+            res.render('observations', { contents: content })
         })
+        .sort({obsDate: -1})
         .catch(err => {
             console.error(err);
             res.status(500).json({ error: 'Internal Server Error' });
+            res.render('error');
         });
-        res.render('observations');
+      
+});
+
+//get new observation page
+router.get('/new', function(req, res, next) {
+   res.render('observations/new'); 
 });
 
 //get specific observation by ID
@@ -33,9 +38,7 @@ router.get('/:id', function(req, res, next) {
         });
 });
 
-router.get('/new', function(req, res, next) {
-   res.render('new'); 
-});
+
 
 
 //handle POST request, create a new observation
@@ -59,12 +62,12 @@ router.post('/', jsonParser, function(req, res, next) {
         })
         .then(
             observation => res.status(201).json(observation.serialize()))
-            res.redirect('/observations')
         .catch(err => {
             console.error(err);
             res.status(500).json({ message: 'Internal server error' });
             res.send(err);
         });
+        res.redirect('/observations');
 });
 
 //DELETE specific observation by ID
