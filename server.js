@@ -16,6 +16,7 @@ const indexRouter = require('./routes/index');
 const speciesRouter = require('./routes/species');
 const observationRouter = require('./routes/observations');
 
+
 //Import the mongoose module
 const mongoose = require('mongoose');
 //Set up default mongoose connection
@@ -30,7 +31,9 @@ db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 const app = express();
 
 //set bodyParser
+app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
+
 
 //enable CORS
 app.use(function(req, res, next) {

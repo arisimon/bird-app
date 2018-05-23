@@ -30,16 +30,16 @@ const Species = mongoose.model('Species', speciesSchema, 'birds');
 const observationSchema = mongoose.Schema({
             bird: {
             	scientific_name: String,
-            	common_name: {type: String, required: true},
+            	common_name: {type: String},
             	family: String,
             },
             location: {
             	lat: Number,
             	lng: Number,
-            	address: {type: String, required: true},
+            	address: {type: String},
             },
             notes: {
-            	details: {type: String, required: true},
+            	details: {type: String},
             },
             photos: {
             	files: [
@@ -50,7 +50,7 @@ const observationSchema = mongoose.Schema({
             		}
             	]
             },
-            obsDate: {type: Date, default: Date.now, required: true}
+            obsDate: {type: Date, default: Date.now}
 
         });
 

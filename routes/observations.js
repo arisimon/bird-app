@@ -4,6 +4,7 @@ const router = express.Router();
 const { Observation } = require('../models');
 const bodyParser = require('body-parser');
 const jsonParser = bodyParser.json();
+const urlParser = bodyParser.urlencoded({ extended: false });
 
 
 //get all observations
@@ -19,7 +20,6 @@ router.get('/', function(req, res, next) {
             res.status(500).json({ error: 'Internal Server Error' });
             res.render('error');
         });
-      
 });
 
 //get new observation page
@@ -44,7 +44,8 @@ router.get('/:id', function(req, res, next) {
 //handle POST request, create a new observation
 router.post('/', jsonParser, function(req, res, next) {
     console.log('POSTing a new observation');
-    const requiredFields = ['bird', 'notes', 'location', 'obsDate'];
+    console.log(req.body);
+    const requiredFields = ['scientific_name', 'common_name', 'family', 'details', 'address'];
     for (let i = 0; i < requiredFields.length; i++) {
         const field = requiredFields[i];
         if (!(field in req.body)) {
@@ -55,19 +56,17 @@ router.post('/', jsonParser, function(req, res, next) {
     }
     Observation
         .create({
-            bird: req.body.bird,
-            location: req.body.location,
-            notes: req.body.notes,
-            obsDate: req.body.obsDate
+            bird: [req.body.scientific_name, req.body.common_name, req.body.family],
+            location: req.body.address,
+            notes: req.body.details
         })
         .then(
-            observation => res.status(201).json(observation.serialize()))
+            observation => res.json(observation.serialize()))
         .catch(err => {
             console.error(err);
             res.status(500).json({ message: 'Internal server error' });
             res.send(err);
         });
-        res.redirect('/observations');
 });
 
 //DELETE specific observation by ID
