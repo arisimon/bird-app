@@ -1,6 +1,6 @@
 $(function () {
 
-  $("#commonName").autocomplete({
+  $("#species-autocomplete").autocomplete({
       source: function (request, response) {
          $.ajax({
             url: "/api/species/:id",

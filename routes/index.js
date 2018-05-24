@@ -8,6 +8,11 @@ router.get('/', function(req, res, next) {
   });
 });
 
+//load Species Search page
+router.get('/species', function(req, res, next) {
+  res.render('species');
+});
+
 module.exports = router;
 
 

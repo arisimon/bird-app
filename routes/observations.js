@@ -27,6 +27,7 @@ router.get('/new', function(req, res, next) {
    res.render('observations/new'); 
 });
 
+
 //get specific observation by ID
 router.get('/:id', function(req, res, next) {
     Observation

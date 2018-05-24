@@ -51,7 +51,7 @@ router.get('/all', function(req, res, next) {
             res.status(500).json({ error: 'Internal Server Error' });
         });
 });
-    
+
 
 
 //GET species by ID
