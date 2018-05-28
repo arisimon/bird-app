@@ -57,9 +57,17 @@ router.post('/', jsonParser, function(req, res, next) {
     }
     Observation
         .create({
-            bird: [req.body.scientific_name, req.body.common_name, req.body.family],
-            location: req.body.address,
-            notes: req.body.details
+            bird: {
+                scientific_name: req.body.scientific_name, 
+                common_name: req.body.common_name, 
+                family: req.body.family
+            },
+            location: {
+                address: req.body.address 
+            },
+            notes: {
+                details: req.body.details
+            },
         })
         .then(
             observation => res.json(observation.serialize()))

@@ -37,7 +37,7 @@ function handleDelete() {
     $('observation-card').on('click', '#deleteBtn', function() {
         event.preventDefault();
         console.log('Delete button clicked');
-        const deleteId = $(this).closest('observation-card').find().text();
+        const deleteId = $(this).closest('observation-card').find('new-observation').text();
         deleteObservation(deleteId);
 
     });

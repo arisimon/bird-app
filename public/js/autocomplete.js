@@ -3,7 +3,7 @@ $(function () {
   $("#species-autocomplete").autocomplete({
       source: function (request, response) {
          $.ajax({
-            url: "/api/species/:id",
+            url: "/api/species/all",
             type: "GET",
             data: request, 
             success: function (data) {
