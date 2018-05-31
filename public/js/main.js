@@ -78,7 +78,15 @@ function updateObservation(id) {
     });
 }
 
-
+function getSpeciesNames(query) {
+  $.ajax({
+    type: 'GET',
+    url: '/api/species',
+    data: {
+      query: `${query}`
+    }
+  }).done()
+}
 function getSpeciesImages(query) {
     $.ajax({
             type: 'GET',
