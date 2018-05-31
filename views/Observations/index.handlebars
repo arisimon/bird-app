@@ -7,19 +7,45 @@
 <div class='container u-full-width'>
     <div class="one-third observation-card" id='observation-box' data-id='{{this._id}}'>
         <div class='two-thirds'>
-            <h3>{{this.bird.common_name}}</h3>
+            <h3 id='common-dynamic'>{{this.bird.common_name}}</h3>
             <ul>
-                <li>{{this.bird.scientific_name}}</li>
-                <li>{{this.bird.family}}</li>
-                <li>{{this.location.address}}</li>
-                <li>{{this.notes.details}}</li>
+                <li><strong>Scientific Name: </strong><span id='scientific-dynamic'>{{this.bird.scientific_name}}</span></li>
+                <li><strong>Family:</strong> <span id='family-dynamic'>{{this.bird.family}}</span></li>
+                <li><strong>Where did you see it? </strong><span id='location-dynamic'>{{this.location.address}}</span></li>
+                <li><strong>Observation Details: </strong><span id='details-dynamic'>{{this.notes.details}}</span></li>
             </ul>
             <div>
                 <img src='{{this.photos.files.url}}'>
                 <button class='button deleteBtn' type='button'>Delete</button>
-                <button class='button updateBtn' type='button'>Update</button>
+                <button class='button updateBtn' type='button'><a href="#ex1" rel="modal:open">Update</a></button>
             </div>
         </div>
     </div>
 </div>
 {{/each}}
+
+<div id="ex1" class="modal">
+  <form id='modalUpdate' data-id='{{this._id}}'>
+  <div class='row'>
+    <div class='six columns'>
+      <h2>Bird</h2>
+      <label for='scientificNameModal'>Scientific Name</label>
+      <input class='u-full-width' type='text' name='scientific_name' id='scientificNameModal'>
+      <label for='commonNameModal'>Common Name</label>
+      <input class='u-full-width' type='text' name='common_name' id='commonNameModal'>
+      <label for='familyNameModal'>Family Name</label>
+      <input class='u-full-width' type='text' name='family' id='familyNameModal'>
+    </div>
+    <div class='six columns'>
+      <h2>Location</h2>
+      <label for='autocomplete'>Address</label>
+      <input class='u-full-width locationModal' id="autocomplete" name='address' type="text"></input>
+      <h2>Photos</h2>
+      <input class='u-full-width' type='file' id='photoUpload' accept='.png, .jpg, .jpeg .pdf' multiple>
+    </div>
+  </div>
+  <label for="detailsModal">Observation Notes</label>
+  <textarea class="u-full-width" name='details' id="detailsModal"></textarea>
+  <input id='observationSubmitModal' class="button-primary" type="submit" value="Update">
+</form>
+</div>

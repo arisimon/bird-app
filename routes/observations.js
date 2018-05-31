@@ -71,7 +71,7 @@ router.post('/', jsonParser, function(req, res, next) {
             },
         })
         .then(
-            observation => res.json(observation.serialize()))
+            observation => res.redirect('/observations'))
         .catch(err => {
             console.error(err);
             res.status(500).json({ message: 'Internal server error' });
