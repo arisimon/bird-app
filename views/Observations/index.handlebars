@@ -1,26 +1,25 @@
 <div class='container u-full-width' id='nav-bar'>
-    <a href="/">Home</a>
+    <a href="/observations">Home</a>
     <a href='/observations/new'>New Observation</a>
     <a href='/species'>Species Search</a>
 </div>
 {{#each contents}}
-<div class="container observation-card" id='observation-box' data-name='new-observation'>
-        <div class='u-full-width '>
-          <div>
-           <h3>{{this.bird.common_name}}</h3>
-           <ul>
-             <li>{{this.bird.scientific_name}}</li>
-             <li>{{this.bird.family}}</li>
-             <li>{{this.location.address}}</li>
-             <li>{{this.notes.details}}</li>
-           </ul>
-         </div>
-         <div class='u-pull-right'>
-           <img src='{{this.photos.files.url}}'>
-        <button class='button' id='deleteBtn'>Delete</button>
-        <button class='button' id='updateBtn'>Update</button>
-      </div>
+<div class='container u-full-width'>
+    <div class="one-third observation-card" id='observation-box' data-id='{{this._id}}'>
+        <div class='two-thirds'>
+            <h3>{{this.bird.common_name}}</h3>
+            <ul>
+                <li>{{this.bird.scientific_name}}</li>
+                <li>{{this.bird.family}}</li>
+                <li>{{this.location.address}}</li>
+                <li>{{this.notes.details}}</li>
+            </ul>
+            <div>
+                <img src='{{this.photos.files.url}}'>
+                <button class='button deleteBtn' type='button'>Delete</button>
+                <button class='button updateBtn' type='button'>Update</button>
+            </div>
         </div>
-
+    </div>
 </div>
 {{/each}}

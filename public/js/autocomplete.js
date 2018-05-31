@@ -1,9 +1,9 @@
 $(function () {
 
-  $("#species-autocomplete").autocomplete({
+  $("#common_name").autocomplete({
       source: function (request, response) {
          $.ajax({
-            url: "/api/species/all",
+            url: "/api/species/",
             type: "GET",
             data: request, 
             success: function (data) {
@@ -34,8 +34,7 @@ $(function () {
             $(this).next("input").val(ui.item.value); 
             // Prevent other event from not being executed           
             event.preventDefault();
-            // // optional: submit the form after field has been filled up
-            // $('#quicksearch').submit();
+
          }
   });
 

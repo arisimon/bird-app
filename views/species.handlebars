@@ -1,17 +1,18 @@
 <div class='container u-full-width' id='nav-bar'>
-    <a href="/">Home</a>
+    <a href="/observations">Home</a>
     <a href='/observations/new'>New Observation</a>
     <a href='/species'>Species Search</a>
 </div>
 <div class="container u-full-width">
 	<h1>Species Search</h1>
 	<div class="row">
-		<form class='species-form'>
-			<label for='species-autocomplete'>Search for a bird!</label>
-			<input type="text" id='species-autocomplete'></input>
+		<form id='species-form'>
+			<label for='species-input'>Search for a bird!</label>
+			<input type="text" id='species-input'></input>
 			<br>
-			<button class="button species-btn" type='submit'>Search</button> 
+			<button class="button button-primary species-btn" type='submit'>Search</button> 
 		</form>
+			<a href='/observations'><button class='button' type='button'>Go Back</button></a>
 	</div>
 </div>
 <div class="container u-full-width">

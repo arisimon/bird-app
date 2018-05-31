@@ -9,12 +9,12 @@ const urlParser = bodyParser.urlencoded({ extended: false });
 
 //get all observations
 router.get('/', function(req, res, next) {
-    console.log('Received a get request for all observations');
+    console.log('Received a GET request for all observations');
     Observation
         .find(function(err, content) {
             res.render('observations', { contents: content })
         })
-        .sort({obsDate: -1})
+        .sort({ obsDate: -1 })
         .catch(err => {
             console.error(err);
             res.status(500).json({ error: 'Internal Server Error' });
@@ -22,9 +22,10 @@ router.get('/', function(req, res, next) {
         });
 });
 
+
 //get new observation page
 router.get('/new', function(req, res, next) {
-   res.render('observations/new'); 
+    res.render('observations/new');
 });
 
 
@@ -58,12 +59,12 @@ router.post('/', jsonParser, function(req, res, next) {
     Observation
         .create({
             bird: {
-                scientific_name: req.body.scientific_name, 
-                common_name: req.body.common_name, 
+                scientific_name: req.body.scientific_name,
+                common_name: req.body.common_name,
                 family: req.body.family
             },
             location: {
-                address: req.body.address 
+                address: req.body.address
             },
             notes: {
                 details: req.body.details
@@ -92,9 +93,9 @@ router.delete('/:id', (req, res) => {
 
 //PUT request to update observation notes
 router.put('/:id', jsonParser, (req, res) => {
-	console.log(req.body);
-	const requiredFields = ['notes'];
-	    for (let i = 0; i < requiredFields.length; i++) {
+    console.log(req.body);
+    const requiredFields = ['common_name', 'notes', 'address'];
+    for (let i = 0; i < requiredFields.length; i++) {
         const field = requiredFields[i];
         if (!(field in req.body)) {
             const message = `Missing ${field} in request body`
@@ -102,24 +103,24 @@ router.put('/:id', jsonParser, (req, res) => {
             return res.status(400).send(message);
         }
     }
-	if (req.params.id !== req.body.id) {
-		const message = `Request path id ${req.params.id} and request body id ${req.body.id} must match`;
-		console.error(message);
-		return res.status(400).send(message);
-	}
-	console.log(`Updating observation ${req.params.id}`);
-	Observation
-		.findByIdAndUpdate(req.params.id, {$set: req.body}, {new: true})
-		.exec()
-		.then(observation => res.status(200).json(observation))
-		.catch(err => {
-			res.status(500).json({message: 'Internal server error'});
-		});
+    if (req.params.id !== req.body.id) {
+        const message = `Request path id ${req.params.id} and request body id ${req.body.id} must match`;
+        console.error(message);
+        return res.status(400).send(message);
+    }
+    console.log(`Updating observation ${req.params.id}`);
+    Observation
+        .findByIdAndUpdate(req.params.id, { $set: req.body }, { new: true })
+        .exec()
+        .then(observation => res.status(200).json(observation))
+        .catch(err => {
+            res.status(500).json({ message: 'Internal server error' });
+        });
 });
 
 //fallback error
 router.use('*', (req, res) => {
-	res.status(404).send('URL Not Found');
+    res.status(404).send('URL Not Found');
 });
 
 

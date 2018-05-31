@@ -1,9 +1,10 @@
 <div class='container u-full-width' id='nav-bar'>
-    <a href="/">Home</a>
+    <a href="/observations">Home</a>
+    <a href='/observations/new'>New Observation</a>
     <a href='/species'>Species Search</a>
 </div>
 <div class='container u-full-width'>
-<form action='/observations' method='post' id='newObservation'>
+<form method='post' action='/observations' id='newObservation'>
   <div class='row'>
     <div class='six columns'>
       <h2>Bird</h2>
@@ -17,7 +18,7 @@
     <div class='six columns'>
       <h2>Location</h2>
       <label for='autocomplete'>Address</label>
-      <input class='u-full-width' id="autocomplete" name='address'placeholder="Enter your address" type="text"></input>
+      <input class='u-full-width' id="autocomplete" name='address' placeholder="Enter your address" type="text"></input>
       <h2>Photos</h2>
       <input class='u-full-width' type='file' id='photoUpload' accept='.png, .jpg, .jpeg .pdf' multiple>
     </div>
@@ -26,5 +27,5 @@
   <textarea class="u-full-width" name='details' placeholder="Add relevant details here!" id="details"></textarea>
   <input id='observationSubmit' class="button-primary" type="submit" value="Submit">
 </form>
-        <a href='/observations'><button class='button' id='returnBtn'>Go Back</button></a>
+        <a href='/observations'><button class='button' id='returnBtn' type='button'>Go Back</button></a>
 </div> 

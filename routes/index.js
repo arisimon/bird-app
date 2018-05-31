@@ -3,17 +3,15 @@ const router = express.Router();
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('index', { 
-  	title: `The Bird Observer's Journal` 
-  });
+    res.render('index', {
+        title: `The Bird Observer's Journal`
+    });
 });
 
 //load Species Search page
 router.get('/species', function(req, res, next) {
-  res.render('species');
+    res.render('species');
 });
 
+
 module.exports = router;
-
-
-

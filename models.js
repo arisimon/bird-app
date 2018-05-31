@@ -28,45 +28,43 @@ const Species = mongoose.model('Species', speciesSchema, 'birds');
 
 //observation schema
 const observationSchema = mongoose.Schema({
-            bird: {
-            	scientific_name: String,
-            	common_name: {type: String},
-            	family: String,
-            },
-            location: {
-            	lat: Number,
-            	lng: Number,
-            	address: {type: String},
-            },
-            notes: {
-            	details: {type: String},
-            },
-            photos: {
-            	files: [
-            		{
-            			filename: String,
-            			url: String,
-            			thumbnail: String,
-            		}
-            	]
-            },
-            obsDate: {type: Date, default: Date.now}
+    bird: {
+        scientific_name: String,
+        common_name: { type: String, required: true },
+        family: String,
+    },
+    location: {
+        lat: Number,
+        lng: Number,
+        address: { type: String, required: true },
+    },
+    notes: {
+        details: { type: String, required: true },
+    },
+    photos: {
+        files: [{
+            filename: String,
+            url: String,
+            thumbnail: String,
+        }]
+    },
+    obsDate: { type: Date, default: Date.now }
 
-        });
+});
 
-        observationSchema.methods.serialize = function() {
-            const obsDateObj = new Date(this.obsDate);
-            return {
-                id: this._id,
-                bird: this.bird,
-                location: this.location,
-                notes: this.notes,
-                photos: this.photos,
-                obsDate: obsDateObj,
-            };
-        }
+observationSchema.methods.serialize = function() {
+    const obsDateObj = new Date(this.obsDate);
+    return {
+        id: this._id,
+        bird: this.bird,
+        location: this.location,
+        notes: this.notes,
+        photos: this.photos,
+        obsDate: obsDateObj,
+    };
+}
 
-        observationSchema.plugin(uniqueValidator);
-        const Observation = mongoose.model('Observation', observationSchema, 'observations');
+observationSchema.plugin(uniqueValidator);
+const Observation = mongoose.model('Observation', observationSchema, 'observations');
 
-        module.exports = { Species, Observation };
+module.exports = { Species, Observation };

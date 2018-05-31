@@ -1,50 +1,30 @@
 'use strict';
 
-const UNSPLASH_URL = 'https://api.unsplash.com/search/photos';
-const UNSPLASH_KEY = 'ff10bdfdc2146ab741e32044b3350178815cdffcb6ed4ebda1ab0d2bebee2dbb'
 const EBIRD_KEY = 'c57cssobo0im';
 
-
-function getObservations(callback) {
-    // getJSON call to get observations
-    $.getJSON('/observations', function(data) {
-        callback(data)
-        console.log('called observation API');
-    })
-}
-
-//handle the start button on landing page
-function handleStart() {
-    $('.start-button').on('click', function() {
-        getObservations(showObservations);
-        console.log('started API call');
-    });
-};
-
-
-
-//handle new observation form submission
-function handleObservationSubmit() {
-    $('#newObservation').submit(function(data) {
-        event.preventDefault();
-        console.log(data);
-        console.log('submitted form');
-    });
+function handleEventHandlers() {
+    handleDelete();
+    handleUpdate();
+    // handleSpeciesButton();
 }
 
 
+
+
+//-----------------  DELETE -------------------------
+//handle delete button event
 function handleDelete() {
-    $('observation-card').on('click', '#deleteBtn', function() {
-        event.preventDefault();
+    $('.deleteBtn').on('click', function(event) {
         console.log('Delete button clicked');
-        const deleteId = $(this).closest('observation-card').find('new-observation').text();
+        const deleteId = $('#observation-box').attr('data-id');
         deleteObservation(deleteId);
 
     });
 }
 
+//make delete request
 function deleteObservation(id) {
-    const url = '/observation' + id;
+    const url = `/observations/${id}`;
     $.ajax({
         type: 'DELETE',
         url: url,
@@ -56,39 +36,67 @@ function deleteObservation(id) {
 }
 
 
-function getSpeciesImages(query) {
-    $.ajax({
-            type: 'GET',
-            url: 'https://pixabay.com/api/',
-            data: {
-              key: '9084261-0447f1e8101e2d906983a6377',
-              q: 'ostrich',
-              image_type: 'photo',
-              per_page: 10
-            }
-        })
-        .done(function(data) {
-            if (data.length === 0) {
-                alert('No results found!');
-            }
-            $.each(data, function(index, value) {
-                $('.results').append(
-                    `<p>${data.hits[0].largeImageURL}</p>`)
-            })
-        })
+//-----------------  PUT -------------------------
+//handle update button event
+function handleUpdate() {
+    $('.updateBtn').on('click', function(event) {
+        console.log('update button clicked');
+        const updateId = $('#observation-box').attr('data-id');
+        console.log(updateId);
+        
+    })
 }
 
-function getSpeciesName() {
-    $('.species-btn').click(function(event) {
-      console.log('button clicked');
-        let query = $('#species-autocomplete').val();
-        if (query == '') {
-            alert('Please provide a valid input!');
-        } else {
-            console.log(query);
-            getSpeciesImages(query);
+function updateObservation(id) {
+  const url = `/observations/${id}`;
+    $.ajax({
+        type: 'PUT',
+        url: url,
+        dataType: 'json',
+        success: function() {
+            location.reload();
         }
     });
 }
 
 
+// function getSpeciesImages(query) {
+//     $.ajax({
+//             type: 'GET',
+//             url: 'https://api.pexels.com/v1/search',
+//             headers: {'Authorization': '563492ad6f917000010000012109c28850a048168b6a10c5d4e18482'},
+//             data: {
+//               query: query,
+//               per_page: 15
+//             }
+//     })
+//     .done(function(data) {
+//                 if (data.length === 0) {
+//                     alert('No results found!');
+//                 }            
+//                 $.each(data, function(index, value) {
+//                     $('.results').html(
+//                         `<p>${data.photos[0].src.small}</p>`)
+//                 })
+//             })
+//     }
+
+
+
+// function handleSpeciesButton() {
+//     $('#species-form').on('submit', function(event) {
+//       console.log('species search initiated');
+//         let query = $('#species-input').val();
+//         console.log(query);
+//         if (query == '') {
+//             alert('Please provide a valid input!');
+//         } else {
+//             console.log(query);
+//             getSpeciesImages(query);
+//         }
+//     });
+// }
+
+
+
+$(handleEventHandlers);
