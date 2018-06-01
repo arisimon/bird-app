@@ -11,7 +11,7 @@ const config = require('../configs');
 router.get('/', function(req, res, next) {
     console.log('Received a GET request to find species');
     console.log(req.query);
-    var noMatch = null;
+    let noMatch = null;
     if (req.query.search) {
         const regex = new RegExp(escapeRegex(req.query.search), 'gi');
         // Get all species from DB
@@ -33,7 +33,7 @@ router.get('/', function(req, res, next) {
                 console.log(err);
                 res.render('error');
             } else {
-                console.log('success!');
+                console.log('This is skipping my query!');
             }
         });
     }
